@@ -19,10 +19,10 @@ class Honey(object):
         self.trials = 0
         self.fitness = 0.0
         self.selection_probability = 0.0
-    
+
     def __lt__(self, other):
         return self.conflicts < other.get_conflicts()
-    
+
     def __gt__(self, other):
         return self.conflicts > other.get_conflicts()
 
@@ -34,13 +34,8 @@ class Honey(object):
 
     def compute_conflicts(self):
         board = [[None] * self.MAX_LENGTH] * self.MAX_LENGTH
-        x = 0
-        y = 0
-        tempx = 0
-        tempy = 0
         dx = [-1, 1, -1, 1]
         dy = [-1, 1, 1, -1]
-        done = False
         conflicts = 0
         board = self.clear_board(board)
         board = self.plot_queens(board)
@@ -111,6 +106,7 @@ class Honey(object):
     def get_max_length(self):
         return self.MAX_LENGTH
 
+
 class ArtificialBeeColony(object):
     MAX_LENGTH = None
     NP = None
@@ -148,7 +144,7 @@ class ArtificialBeeColony(object):
         while not done:
             if self.epoch < self.MAX_EPOCH:
                 if self.gBest.get_conflicts() == 0:
-                    done == True
+                    done = True
                 self.send_employed_bees()
                 self.get_fitness()
                 self.calculate_probabilities()
@@ -173,9 +169,6 @@ class ArtificialBeeColony(object):
         return done
         
     def send_employed_bees(self):
-        neighbor_bee_idx = 0
-        current_bee = None
-        neighbor_bee = None
         for i in range(self.FOOD_NUMBER):
             neighbor_bee_idx = self.get_exclusive_random_number(self.FOOD_NUMBER - 1, i)
             current_bee = self.food_sources[i]
@@ -185,9 +178,6 @@ class ArtificialBeeColony(object):
     def send_onlooker_bees(self):
         i = 0
         t = 0
-        neighbor_bee_idx = 0
-        current_bee = None
-        neighbor_bee = None
         while t < self.FOOD_NUMBER:
             current_bee = self.food_sources[i]
             if self.rand.random() < current_bee.get_selection_probability():
@@ -200,16 +190,10 @@ class ArtificialBeeColony(object):
                 i = 0
                 
     def send_to_work(self, current_bee, neighbor_bee):
-        new_value = 0
-        temp_value = 0
-        temp_idx = 0
-        prev_conflicts = 0
-        curr_conflicts = 0
-        parameter_to_change = 0
         prev_conflicts = current_bee.get_conflicts()
         parameter_to_change = self.get_random_number(0, self.MAX_LENGTH - 1)
         temp_value = current_bee.get_nectar(parameter_to_change)
-        new_value =  int(temp_value + (temp_value - neighbor_bee.get_nectar(parameter_to_change)) * (self.rand.random() - 0.5) * 2)
+        new_value = int(temp_value + (temp_value - neighbor_bee.get_nectar(parameter_to_change)) * (self.rand.random() - 0.5) * 2)
         if new_value < 0:
             new_value = 0
         if new_value > self.MAX_LENGTH - 1:
@@ -228,8 +212,6 @@ class ArtificialBeeColony(object):
             current_bee.set_trials(0)
             
     def send_scout_bees(self):
-        current_bee = None
-        shuffles = 0
         for i in range(self.FOOD_NUMBER):
             current_bee = self.food_sources[i]
             if current_bee.get_trials() >= self.LIMIT:
@@ -240,9 +222,6 @@ class ArtificialBeeColony(object):
                 current_bee.set_trials(0)
         
     def get_fitness(self):
-        this_food = None
-        best_score = 0.0
-        worst_score = 0.0
         food_source_str = ""
         if len(self.food_sources) > 0:
             food_source_str = "[" + str(self.food_sources[0].get_conflicts())
@@ -260,7 +239,6 @@ class ArtificialBeeColony(object):
             this_food.set_fitness(((worst_score - this_food.get_conflicts()) * 100.0) / best_score)
     
     def calculate_probabilities(self):
-        this_food = None
         max_fit = self.food_sources[0].get_fitness()
         for i in range(1, self.FOOD_NUMBER):
             this_food = self.food_sources[i]
@@ -271,8 +249,6 @@ class ArtificialBeeColony(object):
             this_food.set_selection_probability((0.9*(this_food.get_fitness()/max_fit))+0.1)
     
     def initialize(self):
-        new_food_idx = 0
-        shuffles = 0
         for i in range(self.FOOD_NUMBER):
             new_honey = Honey(self.MAX_LENGTH)
             self.food_sources.append(new_honey)
@@ -347,7 +323,8 @@ class ArtificialBeeColony(object):
     
     def get_shuffle_max(self):
         return self.MAX_SHUFFLE
-    
+
+
 class Writer(object):
     log_list = None
 
@@ -364,8 +341,9 @@ class Writer(object):
         for x in range(n):
             board[x][honey.get_nectar(x)] = "Q"
         self.print_board(board, n)
-    
-    def clear_board(self, board, n):
+
+    @staticmethod
+    def clear_board(board, n):
         for x in range(n):
             for y in range(n):
                 board[x][y] = ""
@@ -384,7 +362,8 @@ class Writer(object):
         with open(filename, "w") as output:
             for line in self.log_list:
                 output.write(line)
-    
+
+
 class TesterABC(object):
     log_writer = None
     abc = None
@@ -403,8 +382,6 @@ class TesterABC(object):
         self.abc.set_limit(trial_limit)
         self.abc.set_max_epoch(max_epoch)
         filepath = "ABC-N" + str(self.MAX_LENGTH) + "-" + str(trial_limit) + "-" + str(max_epoch) + ".txt"
-        start_time = 0
-        end_time = 0
         total_time = 0
         fail = 0
         success = 0
@@ -415,8 +392,8 @@ class TesterABC(object):
                 i += 1
                 success += 1
                 self.log_writer.add("Run: " + str(i))
-                self.log_writer.add("Found at epoch: " + self.abc.get_epoch())
-                self.log_writer.add("Population size: " + self.abc.get_pop_size())
+                self.log_writer.add("Found at epoch: " + str(self.abc.get_epoch()))
+                self.log_writer.add("Population size: " + str(self.abc.get_pop_size()))
                 self.log_writer.add("")
                 for honey in self.abc.get_solutions():
                     self.log_writer.add_honey(honey)
@@ -426,8 +403,6 @@ class TesterABC(object):
                 print("Fail!")
             if fail >= 100:
                 print("Cannot find solution with these params")
-            start_time = 0
-            end_time = 0
             total_time = 0
         print("Number of successes: " + str(success))
         print("Number of failures: " + str(fail))
