@@ -48,8 +48,8 @@
       <section id="main_content">
         <p><img src="https://bitbucket.org/repo/q4XX5y/images/1858731202-Bees.jpg" alt="Bees.jpg"></p>
 
-<h3>
-<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
 <p>The Artificial Bee Colony algorithm is an algorithm based on the foraging behavior of real life honey bees. In the colony, there are three types of bees. Unlike in real life, there is only one employed bee per food source, and therefore there are an equal number of employed bees and food sources. Employed bees try to find a neighbor of relatively close to their food sources. The distance between the food source and its neighbors is a function of a distance to neighbor variable. Employed bees check the fitness of their respective food sources and report back to the hive. Onlooker bees evaluate the fitness of the employed bees relative to the other employed bees, follow the bees to the best food source, therefore reinforcing the fitness of that food source. Scout bees are spawned as food sources are abandoned to search for new food sources. The algorithm terminates after the bees have converged on a single source, or after a set number of epochs.</p>
 
@@ -74,15 +74,18 @@
 
 <p>Return the best food sources</p>
 
-<h3>
-<a id="a-visual-guide" class="anchor" href="#a-visual-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Visual Guide</h3>
+<h2>
+<a id="a-visual-guide" class="anchor" href="#a-visual-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Visual Guide</h2>
 
-<p>A sample run without any parameter tweaking</p>
+<p>I plotted the state of the bees in the artificial bee colony at several fixed epochs. The employed bees are spawned dependent on the distance parameter. The optimal food source is located at the origin (0, 0).</p>
+
+<h3>
+<a id="default-arrangement-of-bees" class="anchor" href="#default-arrangement-of-bees" aria-hidden="true"><span class="octicon octicon-link"></span></a>Default Arrangement of Bees</h3>
 
 <p>Initial randomize configuration of "employed bees." 
 <img src="https://bitbucket.org/repo/q4XX5y/images/217938213-Initial.png" alt="Initial.png"></p>
 
-<p>Begins to converge on the global minimum (the origin in this example) after only 10 cycles
+<p>After only a few cycles, the algorithm begins to converge on the global minimum (the origin in this example) after only 10 cycles
 <img src="https://bitbucket.org/repo/q4XX5y/images/1292224664-Cycle10.png" alt="Cycle10.png"></p>
 
 <p>After all employed bees converge on a solution, "scout bees" are spawned
@@ -97,38 +100,43 @@
 <h3>
 <a id="effects-of-greater-distance-on-convergence" class="anchor" href="#effects-of-greater-distance-on-convergence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Effects of Greater Distance on Convergence</h3>
 
-<p>Initial configuration of bees
+<p>Initial configuration of bees with a greater distance parameter set. Note how the bees are more spread apart.
 <img src="https://bitbucket.org/repo/q4XX5y/images/1650011785-1.png" alt="1.png"></p>
 
-<p>Converging on the food source
+<p>The bees begin to converge later because of the greater distance.
 <img src="https://bitbucket.org/repo/q4XX5y/images/2396434634-10.png" alt="10.png"></p>
 
-<p>The scout bees are spawned at greater distance from each other
+<p>When the employed bees abandon their food sources, the scout bees are spawned at greater distance from each other.
 <img src="https://bitbucket.org/repo/q4XX5y/images/681249855-85.png" alt="85.png"></p>
 
-<p>After 200 epochs, the algorithm is stopped
+<p>After 200 epochs, the algorithm is stopped. The newly spawned scout bees are still fairly scattered.
 <img src="https://bitbucket.org/repo/q4XX5y/images/1341039890-200.png" alt="200.png"></p>
 
-<p>The results
+<p>The results of the run with greater distance. The initial run by the employed bees takes less time to converge, but the optimal solution is found later. The spawning of scout bees greatly affects the average performance of the algorithm.
 <img src="https://bitbucket.org/repo/q4XX5y/images/1211122148-results.png" alt="results.png"></p>
 
 <h3>
 <a id="effects-of-smaller-distance-on-convergence" class="anchor" href="#effects-of-smaller-distance-on-convergence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Effects of Smaller Distance on Convergence</h3>
 
-<p>Initial configuration of bees
+<p>Initial configuration of bees. The bees are spawned more closely.
 <img src="https://bitbucket.org/repo/q4XX5y/images/3940758951-1.png" alt="1.png"></p>
 
-<p>Converging on the food source
+<p>The bees quickly swarm upon the food source.
 <img src="https://bitbucket.org/repo/q4XX5y/images/2923254128-10.png" alt="10.png"></p>
 
 <p>The scout bees are spawned at smaller distance from each other
 <img src="https://bitbucket.org/repo/q4XX5y/images/599805997-85.png" alt="85.png"></p>
 
-<p>After 200 epochs, the algorithm is stopped.
+<p>The final configuration of bees converges on the solution quickly
 <img src="https://bitbucket.org/repo/q4XX5y/images/1983623346-200.png" alt="200.png"></p>
 
-<p>The results
+<p>The results of smaller distance. An optimal solution is found quickly, but it takes longer for bees to converge on a solution. The scout bees move more slowly toward the optimal solution, but the average performance is never greatly affected.
 <img src="https://bitbucket.org/repo/q4XX5y/images/2380272736-results.png" alt="results.png"></p>
+
+<h2>
+<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+
+<p>Modifying the distance parameter of the bees algorithm has an exceptional effect on the performance of the algorithm. The greater the distance bees can move, the higher the variability in results, the quicker the convergence, and the higher effect on average performance.</p>
 
 <h3>
 <a id="thanks" class="anchor" href="#thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thanks</h3>
