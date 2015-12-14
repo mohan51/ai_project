@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Neighborhood Distance and the Artificial Bee Colony (ABC) Optimization Algorithm by Devenpor572</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/Devenpor572/ai_project">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Neighborhood Distance and the Artificial Bee Colony (ABC) Optimization Algorithm</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/Devenpor572/ai_project/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Devenpor572/ai_project/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <p><img src="https://bitbucket.org/repo/q4XX5y/images/1858731202-Bees.jpg" alt="Bees.jpg"></p>
+
+<h3>
+<a id="brief-description" class="anchor" href="#brief-description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Brief Description</h3>
+
+<p>In the ABC model, the colony consists of three groups of bees: <strong>employed bees</strong>, <strong>onlookers</strong>, and <strong>scouts</strong>. It is assumed that there is only one artificial employed bee for each food source. In other words, the number of employed bees in the colony is equal to the number of food sources around the hive. Employed bees go to their food source and come back to hive and dance on this area. The employed bee whose food source has been abandoned becomes a scout and starts to search for finding a new food source. Onlookers watch the dances of employed bees and choose food sources depending on dances.</p>
+
+<h3>
+<a id="the-general-idea-of-the-algorithm" class="anchor" href="#the-general-idea-of-the-algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The general idea of the algorithm</h3>
+
+<p>Initial food sources are produced for all employed bees</p>
+
+<p>REPEAT</p>
+
+<ul>
+<li><p>Each employed bee goes to a food source in her memory and determines a neighbour source, then evaluates its nectar amount and dances in the hive</p></li>
+<li><p>Each onlooker watches the dance of employed bees and chooses one of their sources depending on the dances, and then goes to that source. After choosing a neighbour around that, she evaluates its nectar amount.</p></li>
+<li><p>Abandoned food sources are determined and are replaced with the new food sources discovered by scouts.</p></li>
+</ul>
+
+<ul>
+<li>The best food source found so far is registered.</li>
+</ul>
+
+<p>UNTIL (requirements are met)</p>
+
+<h3>
+<a id="a-visual-guide" class="anchor" href="#a-visual-guide" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Visual Guide</h3>
+
+<p>Initial randomize configuration of "employed bees." 
+<img src="https://bitbucket.org/repo/q4XX5y/images/217938213-Initial.png" alt="Initial.png"></p>
+
+<p>Begins to converge on the global minimum (the origin in this example) after only 10 cycles
+<img src="https://bitbucket.org/repo/q4XX5y/images/1292224664-Cycle10.png" alt="Cycle10.png"></p>
+
+<p>After all employed bees converge on a solution, "scout bees" are spawned
+<img src="https://bitbucket.org/repo/q4XX5y/images/3725638092-Cycle85.png" alt="Cycle85.png"></p>
+
+<p>Final configuration
+<img src="https://bitbucket.org/repo/q4XX5y/images/3228738010-Cycle200.png" alt="Cycle200.png"></p>
+
+<p>Performance of the Artificial Bee Colony
+<img src="https://bitbucket.org/repo/q4XX5y/images/1339486431-ArtificialBeeColony.png" alt="ArtificialBeeColony.png"></p>
+
+<h3>
+<a id="thanks" class="anchor" href="#thanks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thanks</h3>
+
+<p>Jordan Devenport</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/Devenpor572">Devenpor572</a> can be found on <a href="https://github.com/Devenpor572/ai_project">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
