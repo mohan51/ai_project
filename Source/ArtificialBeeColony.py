@@ -1,6 +1,3 @@
-# https://github.com/jimsquirt/JAVA-ABC/blob/master/ArtificialBeeColony.java
-
-
 import random
 
 
